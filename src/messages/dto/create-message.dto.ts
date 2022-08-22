@@ -1,5 +1,13 @@
-import { Message } from '../entities/message.entity';
-export class CreateMessageDto extends Message{
-    room : any // TODO
-    date : Date
+import { Message } from '@prisma/client';
+import { IsString } from 'class-validator';
+
+export class CreateMessageDto {
+  @IsString()
+  id: string;
+  @IsString()
+  text: string;
+  @IsString()
+  userid: string;
+  @IsString()
+  roomid: string;
 }
