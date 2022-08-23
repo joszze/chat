@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMessageDto } from './dto/create-message.dto';
-import { UpdateMessageDto } from './dto/update-message.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { Message } from '@prisma/client';
 
@@ -8,7 +7,7 @@ import { Message } from '@prisma/client';
 export class MessagesService {
   constructor(private prisma: PrismaService) {}
 
-  async create(dto: CreateMessageDto): Promise<Message> {
+  async create(dto: CreateMessageDto) {
     const message: Message = await this.prisma.message.create({
       data: {
         id: dto.id,
