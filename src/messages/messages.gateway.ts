@@ -24,23 +24,23 @@ export class MessagesGateway {
     this.server.emit('messageCreated', message);
   }
 
-  @SubscribeMessage('findAllMessages')
-  async findAll() {
-    return await this.messagesService.findAll();
+  @SubscribeMessage('findAllMessagesInRoom')
+  async findAllMessagesInRoom(@MessageBody() roomId: string) {
+    return await this.messagesService.findAllMessagesInRoom(roomId);
   }
 
-  @SubscribeMessage('findOneMessage')
-  findOne(@MessageBody() id: string) {
-    return this.messagesService.findOne(id);
+  @SubscribeMessage('findAllRooms')
+  async findAllRooms() {
+    return await this.messagesService.findAllRooms();
   }
 
-  @SubscribeMessage('updateMessage')
-  update(@MessageBody() updateMessageDto: UpdateMessageDto) {
-    return this.messagesService.update(updateMessageDto.id, updateMessageDto);
+  @SubscribeMessage('findAllUsers')
+  async findAllUsers() {
+    return await this.messagesService.findAllUsers();
   }
 
-  @SubscribeMessage('removeMessage')
-  remove(@MessageBody() id: string) {
-    return this.messagesService.remove(id);
+  @SubscribeMessage('findOneUser')
+  findOneUser(@MessageBody() id: string) {
+    return this.messagesService.findOneUser(id);
   }
 }

@@ -11,18 +11,18 @@ datasource db {
 }
 
 model User {
-  id    String     @id @default(uuid())
-  email String  @unique
+  id    String       @id @default(uuid())
+  email String       @unique
   hash String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  name  String?  
+  nick  String       @default("UnNamed")
   messages Message[]   
   rooms Room[] 
 }
 
 model Message{
-  id String @unique @default(uuid())
+  id String          @unique @default(uuid())
   text String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

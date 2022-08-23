@@ -20,19 +20,25 @@ export class MessagesService {
     return message;
   }
 
-  async findAll() {
-    return await this.prisma.message.findMany();
+  async findAllMessagesInRoom(roomId: string) {
+    return await this.prisma.room
+      .findUnique({ where: { id: roomId } })
+      .messages();
   }
 
-  async findOne(id: string) {
-    return await `This action returns a #${id} message`;
+  async findAllRooms() {
+    return await this.prisma.room.findMany();
   }
 
-  async update(id: string, updateMessageDto: UpdateMessageDto) {
-    return await `This action updates a #${id} message`;
+  async findAllUsers() {
+    return await this.prisma.user.findMany();
   }
 
-  async remove(id: string) {
-    return await `This action removes a #${id} message`;
+  async findOneUser(id: string) {
+    return await this.prisma.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
   }
 }
